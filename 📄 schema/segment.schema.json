@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TEPMT Segment",
+  "description": "Standard metadata fields for TEPMT-compliant translation segments.",
+  "type": "object",
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "Original source segment"
+    },
+    "target": {
+      "type": "string",
+      "description": "Translated segment after T/E/P"
+    },
+    "tep_stage": {
+      "type": "string",
+      "enum": ["translate", "edit", "proof"],
+      "description": "Processing stage of this segment"
+    },
+    "score": {
+      "type": "number",
+      "minimum": 0.0,
+      "maximum": 1.0,
+      "description": "Quality or confidence score"
+    },
+    "tone": {
+      "type": "string",
+      "enum": ["neutral", "formal", "friendly", "technical", "empathetic"],
+      "description": "Target tone category"
+    },
+    "variant": {
+      "type": "string",
+      "description": "Language variant (e.g. en-GB, sv-SE)"
+    },
+    "editor": {
+      "type": "string",
+      "description": "Who made the change: 'ai', 'human', or system name"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "UTC ISO 8601 timestamp"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Optional human or system comment"
+    }
+  },
+  "required": ["source", "target", "tep_stage"]
+}
